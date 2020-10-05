@@ -47,12 +47,16 @@ class Auth{
         let guestDetails = auth.decode(token);
         let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
         auth.setOptions('finchatbot',guestDetails.payload.userid,audience);
-        let result = auth.verifyToken(token);
-        let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],result);
-        res.status(201).json({
-            'token': token,
-            'guest' : payload 
-        });
+        try{
+            let result = auth.verifyToken(token);
+            let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],result);
+            res.status(201).json({
+                'token': token,
+                'guest' : payload 
+            });
+        }catch(err){
+            res.status(203).json(err);
+        }
     }
 
 }

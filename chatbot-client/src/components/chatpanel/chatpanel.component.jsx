@@ -10,7 +10,7 @@ export const ChatPanel = props => (
             <div className="row">
                 <div className="col-md-auto">
                     {props.guest.map(user => (
-                        <GuestCard avatarid={user.avatarid} ip={user.ip} timezone={user.timezone}>
+                        <GuestCard key={user.userid} avatarid={user.avatarid} ip={user.ip} timezone={user.timezone}>
                         </GuestCard>
                     ))}        
                 </div>
