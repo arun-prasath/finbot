@@ -5,6 +5,8 @@ const chatbotDb = require('./services/connect');
 const app = express();
 const port = process.env.APP_SERVER_PORT;
 const connectionURL = process.env.DATABASEURL;
+const dashboardRoutes = require('./routes/dashboard');
+const authRoutes = require('./routes/auth');
 
 class chatbotServer{
     constructor() {
@@ -29,10 +31,23 @@ class chatbotServer{
     }
 
     initRoutes(){
+
         app.get('/', function (req, res) {
-            let sample = { foo : 'bar'}
-            res.status(201).json(sample);
-        })
+            
+            let available_routes = { 
+                'new session' : { 'uri' : '/v1/jwt_auth/new_session', 'protected' : false },
+                'validate session' : { 'uri' : '/v1/jwt_auth/verify_session', 'protected' : false },
+                'engagement rate' : { 'uri' : '/v1/dashboard/engagement_rate', 'protected' : true },
+                'drop off rate' : { 'uri' : '/v1/dashboard/drop_off_rate','protected' : true },
+                'completion rate' : { 'uri' : '/v1/dashboard/completion_rate', 'protected' : true },
+                'total users' : { 'uri' : '/v1/dashboard/all_users', 'protected' : true }
+            }
+            res.status(201).json(available_routes);
+        });
+
+        app.use('/v1/jwt_auth',authRoutes);
+        app.use('/v1/dashboard',dashboardRoutes);
+
     }
 
     initServer(){

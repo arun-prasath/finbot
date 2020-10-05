@@ -15,7 +15,7 @@ export const ActionComponent = props => (
         </div>
         <div className="col-sm-auto">
             <div className="my-2">
-                <button type="button" class="btn btn-md m-2 fin-btn-send">
+                <button type="button" className="btn btn-md m-2 fin-btn-send">
                     <FontAwesomeIcon icon={faPaperPlane} size="1x" className="fin-paperplane m-0 p-0" ></FontAwesomeIcon>
                     <span className="px-3">Send</span>
                 </button>
