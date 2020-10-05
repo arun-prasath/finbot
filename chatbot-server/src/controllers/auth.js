@@ -27,7 +27,9 @@ class Auth{
         let userdetail = await user.save();
 
         // Generate a new token 
-        let auth = new jwtAuth('finchatbot',userdetail.userid, userdetail.ip);
+        let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
+        let auth = new jwtAuth();
+        auth.setOptions('finchatbot',userdetail.userid, audience);
         let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],userdetail);
         let token = auth.generateToken(payload);
 
@@ -39,7 +41,18 @@ class Auth{
     }
 
     async verifyToken(req,res,next){
-
+        let token = req.body.token;
+        // verify token 
+        let auth = new jwtAuth();
+        let guestDetails = auth.decode(token);
+        let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
+        auth.setOptions('finchatbot',guestDetails.payload.userid,audience);
+        let result = auth.verifyToken(token);
+        let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],result);
+        res.status(201).json({
+            'token': token,
+            'guest' : payload 
+        });
     }
 
 }

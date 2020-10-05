@@ -22,11 +22,15 @@ class App extends Component {
 
   checkSession(jwt_auth_token){
     /* if token exists - check for session validity , else generate a new token & user */
+    console.log()
     if(jwt_auth_token){
       // check for session validity
-      const isValid = Passport.validateSession(jwt_auth_token);
-      console.log(isValid);
-      // get user details
+      Passport.validateSession(jwt_auth_token).then(response =>{
+        // if valid - get user details
+        this.setState({guest : [response.data.guest]});
+      }).catch(err => {
+        console.log(err)
+      });
 
     }else{
       // generate a new user & access token 

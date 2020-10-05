@@ -5,7 +5,9 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 class jwtAuth {
 
-    constructor(i,s,a){
+    constructor(){}
+
+    setOptions(i,s,a){
         this.options = {
             issuer:  i,
             subject:  s,
@@ -26,7 +28,6 @@ class jwtAuth {
 
     decode(token){
         return jwt.decode(token, {complete: true});
-
     }
 }
 

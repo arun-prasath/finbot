@@ -7,6 +7,6 @@ const AuthController = require('../controllers/auth');
 router.get('/new_session', AuthController.generateNewToken);
 
 // GET /v1/jwt_auth/verify_session
-router.get('/verify_session', AuthController.verifyToken);
+router.post('/verify_session', AuthController.verifyToken);
 
 module.exports = router;
