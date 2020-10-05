@@ -17,16 +17,16 @@ export default class Passport {
                 timezone : 'Asia/Calcutta'
             }
         }).then((response) => {
-                // handle success
-                console.log(response);
-            })
-            .catch((error) => {
-                // handle error
-                console.log(error);
-            })
-            .then(() => {
-                // always executed
-            });
+            // handle success
+            console.log(response);
+        })
+        .catch((error) => {
+            // handle error
+            console.log(error);
+        })
+        .then(() => {
+            // always executed
+        });
     }
 
 }
