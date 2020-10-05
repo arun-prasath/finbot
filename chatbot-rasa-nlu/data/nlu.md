@@ -38,3 +38,4 @@
 - What's left on my account?
 - what's my account balance?
 - what's my bank balance?
+- what's my balance
