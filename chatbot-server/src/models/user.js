@@ -3,19 +3,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    username : {
-        type : String,
+    registrationNumber : {
+        type : Number,
         unique : true
     },
-    avatar : {
-        type : String
-    },
-    userno : {
-        type : Number
+    userid : {
+        type : String,
+        unique : true
     },
     jwt : {
         type : String,
         unique : true
+    },
+    useragent : {
+        type : String
     },
     timezone : {
         type : String

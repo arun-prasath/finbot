@@ -10,8 +10,14 @@ class Auth{
      * Or if the old jwt token expires. 
      */
     async generateNewToken(req,res,next){
-
-        // Create a new user 
+        let details = new Object();
+        // Create a new user
+        let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        if(ip.substr(0,7) == "::ffff:"){
+            details.ip = ip.substr(7);
+        }
+        details.useragent = req.get('User-Agent');
+        details.timezone = req.query.timezone;
 
         // Generate a new token 
 

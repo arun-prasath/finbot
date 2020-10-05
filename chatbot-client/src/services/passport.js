@@ -12,8 +12,11 @@ export default class Passport {
     static generatenewToken = () => {
 
         let endpoint = 'http://'+host+':'+app_server_port+'/v1/jwt_auth/new_session';
-        axios.get(endpoint)
-            .then((response) => {
+        axios.get(endpoint,{
+            params: {
+                timezone : 'Asia/Calcutta'
+            }
+        }).then((response) => {
                 // handle success
                 console.log(response);
             })
