@@ -3,13 +3,16 @@ import { GuestCard } from '../guest/guest.component';
 import { Messenger } from '../messenger/messenger.component';
 import './chatpanel.component.scss'
 
-export const ChatContainer = props => (
-    
+export const ChatPanel = props => (
     <div className="card fin-chat-container">
+         
         <div className="card-body pt-0">
             <div className="row">
                 <div className="col-md-auto">
-                    <GuestCard></GuestCard>
+                    {props.guest.map(user => (
+                        <GuestCard avatarid={user.avatarid} ip={user.ip} timezone={user.timezone}>
+                        </GuestCard>
+                    ))}        
                 </div>
                 <div className="col-sm">
                     <Messenger></Messenger>

@@ -4,29 +4,34 @@ const host = config.host;
 const app_server_port = config.app_server_port;
 
 export default class Passport {
-    static validateSession = (jwt_token) => {
-
-        return null;
+    constructor(){
+        this.baseUrl = 'http://'+host+':'+app_server_port;
+    }
+    static validateSession = async (jwt_token) => {
+        try {
+            let endpoint = this.baseUrl+'/v1/jwt_auth/verify_session';
+            const response = await axios.post(endpoint,{
+                token : jwt_token
+            });
+            return response;
+        }catch(error){
+            return error;
+        }
     }
 
-    static generatenewToken = () => {
+    static generatenewToken = async () => {
+        try{
+            let endpoint = this.baseUrl+'/v1/jwt_auth/new_session';
+            const response = await axios.get(endpoint,{
+                params: {
+                    timezone : 'Asia/Calcutta'
+                }
+            });
+            return response;
 
-        let endpoint = 'http://'+host+':'+app_server_port+'/v1/jwt_auth/new_session';
-        axios.get(endpoint,{
-            params: {
-                timezone : 'Asia/Calcutta'
-            }
-        }).then((response) => {
-            // handle success
-            console.log(response);
-        })
-        .catch((error) => {
-            // handle error
-            console.log(error);
-        })
-        .then(() => {
-            // always executed
-        });
+        }catch(error){
+            return error;
+        }
     }
 
 }

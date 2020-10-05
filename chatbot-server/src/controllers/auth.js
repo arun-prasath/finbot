@@ -2,6 +2,7 @@
 const jwtAuth = require('../helpers/jwtAuth');
 const { v4: uuidv4 } = require('uuid');
 const UserModel = require('../models/user');
+const { dehydrate } = require('../helpers/factory');
 
 class Auth{
 
@@ -24,11 +25,17 @@ class Auth{
 
         let user = new UserModel(details);
         let userdetail = await user.save();
-        console.log(userdetail);
+
         // Generate a new token 
+        let auth = new jwtAuth('finchatbot',userdetail.userid, userdetail.ip);
+        let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],userdetail);
+        let token = auth.generateToken(payload);
 
         // Send the user & token details to the React App
-        res.status(201).json({'token':'rtyu'});
+        res.status(201).json({
+            'token': token,
+            'guest' : payload 
+        });
     }
 
     async verifyToken(req,res,next){

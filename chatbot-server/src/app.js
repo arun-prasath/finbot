@@ -7,6 +7,7 @@ const port = process.env.APP_SERVER_PORT;
 const connectionURL = process.env.DATABASEURL;
 const dashboardRoutes = require('./routes/dashboard');
 const authRoutes = require('./routes/auth');
+const SocketService = require('./services/socket');
 
 class chatbotServer{
     constructor() {
@@ -51,7 +52,10 @@ class chatbotServer{
     }
 
     initServer(){
-        app.listen(port, () =>console.log(`Listening on port ${port}..`));
+        const server = app.listen(port, () => {
+            // initialize socket 
+            new SocketService(server);
+        });
     }
     
 }

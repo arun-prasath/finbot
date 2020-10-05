@@ -5,32 +5,23 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 class jwtAuth {
 
-    setSignOptions(i,s,a){
-        this.signOptions = {
+    constructor(i,s,a){
+        this.options = {
             issuer:  i,
             subject:  s,
             audience:  a,
             expiresIn:  "2h",
-            algorithm:  "RS256"
-        }
-    }
-
-    setVerifyOptions(i,s,a){
-        this.verifyOptions = {
-            issuer:  i,
-            subject:  s,
-            audience:  a,
-            expiresIn:  "2h",
-            algorithm:  ["RS256"]
         }
     }
 
     generateToken(payload){
-        return jwt.sign(payload, PRIVATE_KEY, this.signOptions);
+        this.options.algorithm = "RS256";
+        return jwt.sign(payload, PRIVATE_KEY, this.options);
     }
 
-    verifyToken(token,payload){
-        return jwt.verify(token, PUBLIC_KEY, this.verifyOptions);
+    verifyToken(token){
+        this.options.algorithm = ["RS256"];
+        return jwt.verify(token, PUBLIC_KEY, this.options);
     }
 
     decode(token){
@@ -39,4 +30,4 @@ class jwtAuth {
     }
 }
 
-module.exports = new jwtAuth();
+module.exports = jwtAuth;
