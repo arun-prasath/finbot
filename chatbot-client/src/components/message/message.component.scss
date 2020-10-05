@@ -1,0 +1,15 @@
+.message-container{
+    .chat-container{
+        background-image: url('../../assets/images/chat-bg.jpg');
+        height: 100%;
+        width: 100%;
+        position: relative;
+        min-height: 70vh;
+        border-radius: 0 10px 10px 0;
+
+        .input-group{
+            position: absolute;
+            bottom:0;
+        }
+    }
+}
