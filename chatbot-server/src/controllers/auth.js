@@ -1,5 +1,7 @@
 'use strict';
 const jwtAuth = require('../helpers/jwtAuth');
+const { v4: uuidv4 } = require('uuid');
+const UserModel = require('../models/user');
 
 class Auth{
 
@@ -18,7 +20,11 @@ class Auth{
         }
         details.useragent = req.get('User-Agent');
         details.timezone = req.query.timezone;
+        details.userid = uuidv4();
 
+        let user = new UserModel(details);
+        let userdetail = await user.save();
+        console.log(userdetail);
         // Generate a new token 
 
         // Send the user & token details to the React App

@@ -1,17 +1,15 @@
 'use strict';
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    registrationNumber : {
+    avatarid : {
         type : Number,
         unique : true
     },
     userid : {
-        type : String,
-        unique : true
-    },
-    jwt : {
         type : String,
         unique : true
     },
@@ -29,5 +27,6 @@ const userSchema = new Schema({
         default : Date.now
     }
 });
+userSchema.plugin(AutoIncrement, {inc_field: 'avatarid'});
 
-module.exports = mongoose.model('users',userSchema);
+module.exports = mongoose.model('User',userSchema);
