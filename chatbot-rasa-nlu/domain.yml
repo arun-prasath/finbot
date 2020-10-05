@@ -1,0 +1,22 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- check_balance
+slots:
+  account_balance:
+    type: unfeaturized
+responses:
+  utter_greet:
+  - text: Hi! I'm your Financial Assistant!
+  utter_help:
+  - text: "I can help you with your financial accounts. \nYou can ask me things like:\
+      \ \n- What's my account balance?"
+  utter_goodbye:
+  - text: Bye
+actions:
+- action_account_balance
