@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
+import socketIOClient from "socket.io-client"
 import './message.component.scss';
+import config from "../../config/config.json";
 
 class MessageComponent extends Component { 
+
+    constructor(){
+        super();
+        this.endpoint = 'http://'+config.host+':'+config.app_server_port;
+    }
+
+    componentDidMount(){
+        const socket = socketIOClient(this.endpoint);
+        socket.on("greet", data => {
+            console.log(data);
+        });
+    }
 
     render(){
         return (

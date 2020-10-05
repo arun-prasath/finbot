@@ -10,16 +10,9 @@ class SocketService {
     init = () => {
         this.io.on("connection",(socket)=>{
             console.log('Socket Connection Estabished');
-            this.newUser(socket);
             this.message(socket);
             this.typing(socket);
             this.disconnect(socket);
-        });
-    }
-
-    newUser = (socket) => {
-        socket.on("newUser", (data) => {
-            console.log('New User Event');
         });
     }
 
@@ -31,7 +24,7 @@ class SocketService {
 
     message = (socket) => {
         socket.on("message", async (msg) => {
-            console.log(msg);
+            socket.emit("message", 'Welcome to chat');
         })
     }
 
