@@ -23,8 +23,10 @@ class SocketService {
     }
 
     message = (socket) => {
+
         socket.on("message", async (msg) => {
-            socket.emit("message", 'Welcome to chat');
+            console.log(msg);
+            socket.emit("reply", 'Hi from bot');
         })
     }
 

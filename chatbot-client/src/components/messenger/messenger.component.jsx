@@ -1,6 +1,6 @@
 import React from 'react';
 import './messenger.component.scss';
-import { ActionComponent } from '../actions/actions.component';
+import ActionComponent from '../actions/actions.component';
 import MessageComponent from '../message/message.component';
 
 export const Messenger = props => (

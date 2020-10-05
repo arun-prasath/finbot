@@ -12,7 +12,8 @@ class MessageComponent extends Component {
 
     componentDidMount(){
         const socket = socketIOClient(this.endpoint);
-        socket.on("greet", data => {
+        socket.emit("message", 'Hi');
+        socket.on("reply", data => {
             console.log(data);
         });
     }
@@ -20,7 +21,15 @@ class MessageComponent extends Component {
     render(){
         return (
             <div className="message-container">
-                <div className="yours messages">
+                <div className="mine messages pr-3 pt-1">
+                    <div className="message">
+                    Great thanks!
+                    </div> 
+                    <div className="message last">
+                    How about you?
+                    </div>
+                </div>
+                <div className="bot messages">
                     <div className="row">
                         <div className="col-sm-auto">
                             <div className="avatar pl-1">
@@ -47,14 +56,7 @@ class MessageComponent extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="mine messages pr-3">
-                    <div className="message">
-                    Great thanks!
-                    </div> 
-                    <div className="message last">
-                    How about you?
-                    </div>
-                </div>
+                
             </div>
         )
     }
