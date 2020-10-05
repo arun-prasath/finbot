@@ -8,10 +8,10 @@ const connectionURL = process.env.DATABASEURL;
 
 class chatbotServer{
     constructor() {
-        this.initDB();
         this.initExpress();
         this.initRoutes();
         this.initServer();
+        this.initDB();
     }
 
     initDB(){

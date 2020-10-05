@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header } from './components/header/header.component';
-import { ChatContainer } from './components/chat/chat.component';
+import { ChatContainer } from './components/chatpanel/chatpanel.component';
 import './App.scss';
 
 class App extends Component {

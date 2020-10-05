@@ -2,11 +2,14 @@ import React from 'react';
 import './guest.component.scss';
 
 export const GuestCard = props => (
-<ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-</ul>
+    <div className="guest-container">
+        <img src="https://robohash.org/9?set=set2" class="rounded" alt="..."/>
+        <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item">Guest : 1346</li>
+            <li class="list-group-item">IPv4 : 152.112.1.1</li>
+            <li class="list-group-item">Timezone : Asia/Calcutta</li>
+        </ul>
+    </div>
 );
 
 
