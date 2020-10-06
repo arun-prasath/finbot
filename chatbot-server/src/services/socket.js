@@ -39,7 +39,15 @@ class SocketService {
                 console.log(result);
 
                 // Send Message to Rasa Server for NLU
-                console.log(data.message);
+                let endpoint = 'http://rasa:'+process.env.RASA_PORT+'/webhooks/rest/webhook'
+                axios.post(endpoint, {
+                    sender: token,
+                    message: data.message
+                }).then(function (response) {
+                    console.log(response);
+                }).catch(function (error) {
+                    console.log(error);
+                });
                
             }catch(err){
                 socket.emit("reply", 'JWT Authentication Failed !!');
