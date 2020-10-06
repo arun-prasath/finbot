@@ -22,13 +22,14 @@ class Messenger extends Component {
 
     relay = (message) => {
         // Add messages to State & Push messages to UI screen 
-        console.log(message);
+        console.log('user-->'+message);
         let chat_message = {
+            context : 'mine',
             timestamp : new Date().toUTCString(),
             message : message,
             token : localStorage.getItem('jwt_auth_token')
         }
-
+        this.pushChatMessages(chat_message);
         // Push messages to server
         let socketService = new SocketClient(this.socket);
         socketService.sendMessage('message',message);
@@ -41,7 +42,20 @@ class Messenger extends Component {
 
     handleBotResponse = (data) =>{
         // Add messages to state & Push messages to UI screen 
-        console.log(data);
+        console.log('bot-->'+data);
+        let bot_message = {
+            context : 'bot',
+            timestamp : new Date().toUTCString(),
+            message : data,
+            token : localStorage.getItem('jwt_auth_token')
+        }
+        this.pushChatMessages(bot_message);
+    }
+
+    pushChatMessages = (chat_message) => {
+        let chat_history = this.state.chatHistory;
+        chat_history.push(chat_message);
+        this.setState(chat_history);
     }
 
     initSocketConnection = async () => {
@@ -51,7 +65,7 @@ class Messenger extends Component {
     }
 
     render(){
-        const { socket, chatHistory } = this.state;
+        const { chatHistory } = this.state;
         return (
             <div className="messenger-container">
                 <div className="chat-container">
