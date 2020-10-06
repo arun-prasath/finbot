@@ -1,5 +1,4 @@
 'use strict';
-const jwtAuth = require('../helpers/jwtAuth');
 
 const { response } = require('express');
 const jwtAuth = require('../helpers/jwtAuth');
