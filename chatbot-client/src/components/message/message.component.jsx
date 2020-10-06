@@ -22,10 +22,10 @@ class MessageComponent extends Component {
         return (
             <div className="message-container">
                 <div className="mine messages pr-3 pt-1">
-                    <div className="message">
+                    <div className="animate__animated animate__fadeInUp animate__delay-1s message">
                     Great thanks!
                     </div> 
-                    <div className="message last">
+                    <div className="animate__animated animate__fadeInUp animate__delay-1s message last">
                     How about you?
                     </div>
                 </div>
@@ -39,17 +39,17 @@ class MessageComponent extends Component {
                         </div>
                         <div className="col-lg-auto">
                             <div className="row">
-                                <div className="message">
+                                <div className="animate__animated animate__fadeInUp animate__delay-1s message">
                                         Hey!
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="message">
+                                <div className="animate__animated animate__fadeInUp animate__delay-1s message">
                                     You there?
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="message last">
+                                <div className="animate__animated animate__fadeInUp animate__delay-1s message last">
                                     Hello, how's it going?
                                 </div>
                             </div>

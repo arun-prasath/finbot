@@ -1,37 +1,37 @@
 
 .message-container {
-    .fin-bot-avatar{
-        width: 100px;
-        border-radius: 50%;
-    }
+      .fin-bot-avatar{
+          width: 100px;
+          border-radius: 50%;
+      }
 
-    .fin-timestamp{
-        display: block;
-        color: #808080;
-    }
+      .fin-timestamp{
+          display: block;
+          color: #808080;
+      }
 
-    .messages {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-    }
-    .message {
-        border-radius: 20px;
-        padding: 8px 15px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        display: inline-block;
-    }
-    .bot {
-        align-items: flex-start;
-    }
-    .bot .message {
-        margin-right: 25%;
-        background-color: transparent;
-        position: relative;
-    }
+      .messages {
+          margin-top: 30px;
+          display: flex;
+          flex-direction: column;
+      }
+      .message {
+          border-radius: 20px;
+          padding: 8px 15px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          display: inline-block;
+      }
+      .bot {
+          align-items: flex-start;
+      }
+      .bot .message {
+          margin-right: 25%;
+          background-color: transparent;
+          position: relative;
+      }
 
-    .mine {
+      .mine {
         align-items: flex-end;
       }
       
