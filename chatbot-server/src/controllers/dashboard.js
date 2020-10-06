@@ -6,16 +6,10 @@ class Dashboard{
 
     constructor(){}
 
-    async getAllUsers(req, res, next){
-        users.find().then(items => {
-            res.status(200).json(items);
-        })
-    }
-
     /**
-     * Engagement Rate = total users visiting the site VS no of users who has initiated the chat
+     * The users who engaged with the bot.
      */
-    async getEngagementRate(req, res) {
+    async getUserEngagement(req, res) {
         let engagedUsers = await chatHistory.find({ connectionStatus: 'engaged' }).select('userid');
         let responseObj = {
             users: []
@@ -32,9 +26,9 @@ class Dashboard{
     }
 
     /**
-     * Drop Rate = total users initiated a chat VS no of users who has left in between
+     * The users who left the chat conversation in-between.
      */
-    async getDropoffRate(req, res) {
+    async getDropOffs(req, res) {
         let droppedUsers = await chatHistory.find({ connectionStatus: 'dropped' }).select('userid');
         let responseObj = {
             users: []
@@ -45,15 +39,15 @@ class Dashboard{
         let totalUserCount = await users.countDocuments();
         responseObj.droppedUsersCount = droppedUsers.length;
         responseObj.totalUsersCount = totalUserCount;
-        responseObj.droppedRate = (( droppedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
+        responseObj.dropOffRate = (( droppedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
 
         res.status(200).json(responseObj);
     }
 
     /**
-     * completion rate = total users initiated a chat VS no of users who has finished the thank you or goodbye intent
+     * The users who completed the chat conversation
      */
-    async getCompletionRate(req, res) {
+    async getCompletedUsers(req, res) {
         let completedUsers = await chatHistory.find({ connectionStatus: 'completed' }).select('userid');
         let responseObj = {
             users: []
@@ -64,7 +58,7 @@ class Dashboard{
         let totalUserCount = await users.countDocuments();
         responseObj.completedUsersCount = completedUsers.length;
         responseObj.totalUsersCount = totalUserCount;
-        responseObj.completedUsers = (( completedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
+        responseObj.completionRate = (( completedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
 
         res.status(200).json(responseObj);
     }

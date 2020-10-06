@@ -3,16 +3,13 @@ const express = require('express');
 const router = express.Router();
 const DashboardController = require('../controllers/dashboard');
 
-// GET /v1/dashboard/all_users
-router.get('/all_users', DashboardController.getAllUsers);
+// GET /v1/dashboard/user_engagement
+router.get('/user_engagement', DashboardController.getUserEngagement);
 
-// GET /v1/dashboard/engagement_rate
-router.get('/engagement_rate', DashboardController.getEngagementRate);
+// GET /v1/dashboard/drop_offs
+router.get('/drop_offs', DashboardController.getDropOffs);
 
-// GET /v1/dashboard/drop_off_rate
-router.get('/drop_off_rate', DashboardController.getDropoffRate);
-
-// GET /v1/dashboard/completion_rate
-router.get('/completion_rate', DashboardController.getCompletionRate);
+// GET /v1/dashboard/completed_users
+router.get('/completed_users', DashboardController.getCompletedUsers);
 
 module.exports = router;

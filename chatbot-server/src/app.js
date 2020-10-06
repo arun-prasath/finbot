@@ -39,10 +39,9 @@ class chatbotServer{
             let available_routes = { 
                 'new session' : { 'uri' : '/v1/jwt_auth/new_session', 'protected' : false },
                 'validate session' : { 'uri' : '/v1/jwt_auth/verify_session', 'protected' : false },
-                'engagement rate' : { 'uri' : '/v1/dashboard/engagement_rate', 'protected' : true },
-                'drop off rate' : { 'uri' : '/v1/dashboard/drop_off_rate','protected' : true },
-                'completion rate' : { 'uri' : '/v1/dashboard/completion_rate', 'protected' : true },
-                'total users' : { 'uri' : '/v1/dashboard/all_users', 'protected' : true }
+                'user engagement' : { 'uri' : '/v1/dashboard/user_engagement', 'protected' : true },
+                'drop offs' : { 'uri' : '/v1/dashboard/drop_offs','protected' : true },
+                'completed users' : { 'uri' : '/v1/dashboard/completed_users', 'protected' : true }
             }
             res.status(201).json(available_routes);
         });

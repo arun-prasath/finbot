@@ -70,13 +70,13 @@ Used the online generator https://www.csfieldguide.org.nz/en/interactives/rsa-ke
 The following APIs are used to obtain the metrics data
 
 #### People who engaged with the bot:
-`/v1/dashboard/engagement_rate`
+`/v1/dashboard/user_engagement`
 
 #### People who dropped off:
-`/v1/dashboard/drop_off_rate`
+`/v1/dashboard/drop_offs`
 
 #### People who completed a chat:
-`/v1/dashboard/completion_rate`
+`/v1/dashboard/completed_users`
 
 ## Bot conversation visualization
 The bot conversation graph is as follows.
