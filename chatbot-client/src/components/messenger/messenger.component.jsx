@@ -23,6 +23,11 @@ class Messenger extends Component {
     relay = (message) => {
         // Add messages to State & Push messages to UI screen 
         console.log(message);
+        let chat_message = {
+            timestamp : new Date().toUTCString(),
+            message : message,
+            token : localStorage.getItem('jwt_auth_token')
+        }
 
         // Push messages to server
         let socketService = new SocketClient(this.socket);
@@ -40,7 +45,7 @@ class Messenger extends Component {
     }
 
     initSocketConnection = async () => {
-        const socket = await socketIOClient(this.endpoint);
+        const socket = socketIOClient(this.endpoint);
         this.socket = socket;
         this.initSocketListeners(socket);
     }
