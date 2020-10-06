@@ -1,4 +1,7 @@
 # Chatbot
+- chatbot-server : https://desolate-wildwood-05365.herokuapp.com/
+- chatbot-client : 
+- chatbot-rasa-nlu : 
 
 ## About
 A financial assistant that serves basic banking functionalities to the customers.
