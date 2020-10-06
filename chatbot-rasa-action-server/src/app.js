@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const app = express();
-const port = process.env.RASA_ACTION_SERVER_PORT;
+const port = process.env.RASA_ACTION_SERVER_PORT || 5055;
 const actionRoutes = require('./routes/action')
 
 class ChatbotActionServer {
