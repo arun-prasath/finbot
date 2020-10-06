@@ -45,4 +45,7 @@ services:
             - ${RASA_PORT}:${RASA_PORT}
         command:
             - run
+        volumes:
+            - ./chatbot-rasa-nlu/data:/app/data
+            - ./chatbot-rasa-nlu
         env_file: .env
