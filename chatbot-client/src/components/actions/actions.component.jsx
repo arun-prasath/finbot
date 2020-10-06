@@ -14,8 +14,11 @@ class ActionComponent extends Component {
 
     sendMessage = () => {
         let input_message = this.state.input_message;
-        this.props.relayMessage(input_message);
-        this.setState({ input_message : ''} );
+        if(input_message){
+            this.props.relayMessage(input_message);
+            this.setState({ input_message : ''} );
+        }
+        return;
     }
 
     handleMessage = (e) => {
