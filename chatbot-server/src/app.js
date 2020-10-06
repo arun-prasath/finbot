@@ -55,6 +55,7 @@ class chatbotServer{
 
     initServer(){
         const server = app.listen(port, () => {
+            console.log('Server Running');
             // initialize socket 
             new SocketService(server);
         });
