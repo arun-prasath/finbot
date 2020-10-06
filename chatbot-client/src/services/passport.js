@@ -22,7 +22,7 @@ export default class Passport {
             let endpoint = 'http://'+host+':'+app_server_port+'/v1/jwt_auth/new_session';
             const response = await axios.get(endpoint,{
                 params: {
-                    timezone : 'Asia/Calcutta'
+                    timezone : Intl.DateTimeFormat().resolvedOptions().timeZone
                 }
             });
             return response;

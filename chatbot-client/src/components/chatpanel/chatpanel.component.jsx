@@ -14,7 +14,7 @@ export const ChatPanel = props => (
                         </GuestCard>
                     ))}        
                 </div>
-                <div className="col-sm">
+                <div className="col-sm pt-3">
                     <Messenger></Messenger>
                 </div>
             </div>
