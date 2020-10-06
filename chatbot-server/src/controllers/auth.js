@@ -2,7 +2,7 @@
 const jwtAuth = require('../helpers/jwtAuth');
 const { v4: uuidv4 } = require('uuid');
 const UserModel = require('../models/user');
-const { dehydrate } = require('../helpers/factory');
+const { dehydrate, seedAccount } = require('../helpers/factory');
 
 class Auth{
 
@@ -25,14 +25,14 @@ class Auth{
 
         let user = new UserModel(details);
         let userdetail = await user.save();
-
         // Generate a new token 
         let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
         let auth = new jwtAuth();
         auth.setOptions('finchatbot',userdetail.userid, audience);
         let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],userdetail);
         let token = auth.generateToken(payload);
-
+        // populate account balance for the created user
+        seedAccount(userdetail);
         // Send the user & token details to the React App
         res.status(201).json({
             'token': token,

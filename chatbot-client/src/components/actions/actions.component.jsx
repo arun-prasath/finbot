@@ -8,7 +8,7 @@ import config from "../../config/config.json";
 
 class ActionComponent extends Component { 
 
-    sendMessage = () =>{
+    sendMessage = () => {
 
     }
 
