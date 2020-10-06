@@ -11,6 +11,7 @@ WORKDIR ${APP}
 
 #install dependencies
 COPY package*.json ${APP}
+COPY . .
 RUN npm install
 
 ENV PATH "$PATH:$APP/node_modules/.bin/"
