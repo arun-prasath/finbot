@@ -48,7 +48,7 @@ The client-server communication is secured by using JWT.
 
 ![Security architecture](./security_architecture.png)
 
-When a new customer starts up the conversationn, a new token is generated. The generated token is then stored in local storage for further communication until it expires.
+When a new customer starts up the conversation, a new token is generated. The generated token is then stored in local storage for further communication until it expires.
 
 When a user resumes the chat-session before the token expiry, the token from the local storage will be validated (using validation API) and then used for communication.
 
@@ -61,7 +61,7 @@ The NodeJs server exposes the following two endpoints for token generation and v
 
 `/v1/jwt_auth/new_session`
 
-`'/v1/jwt_auth/verify_session'`
+`/v1/jwt_auth/verify_session`
 
 ### JWT Access Token Generation
 Used the online generator https://www.csfieldguide.org.nz/en/interactives/rsa-key-generator/ to generate private & public key.
