@@ -25,7 +25,6 @@ class Messenger extends Component {
         console.log('user-->'+message);
         let chat_message = {
             context : 'mine',
-            timestamp : new Date().toUTCString(),
             message : message,
             token : localStorage.getItem('jwt_auth_token')
         }
@@ -33,7 +32,6 @@ class Messenger extends Component {
         // Push messages to server
         let socketService = new SocketClient(this.socket);
         socketService.sendMessage('message',message);
-        
     }
 
     initSocketListeners = (socket) => {
@@ -45,7 +43,6 @@ class Messenger extends Component {
         console.log('bot-->'+data);
         let bot_message = {
             context : 'bot',
-            timestamp : new Date().toUTCString(),
             message : data,
             token : localStorage.getItem('jwt_auth_token')
         }
