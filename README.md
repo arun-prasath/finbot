@@ -1,7 +1,7 @@
 # Chatbot
 - chatbot-server : https://desolate-wildwood-05365.herokuapp.com/
 - chatbot-client : 
-- chatbot-rasa-nlu : 
+- chatbot-rasa-nlu : https://fast-escarpment-15453.herokuapp.com/
 
 ## About
 A financial assistant that serves basic banking functionalities to the customers.
@@ -52,7 +52,7 @@ The client (ReactJS) and the server (NodeJS) communication is secured by using J
 
 ![Security architecture](./security_architecture.png)
 
-When a new customer starts up the conversation, a new token is generated. The generated token is then stored in local storage for further communication until it expires.
+When a new customer starts up the conversation, a new token is generated. The generated token is then stored in local storage for further communication.
 
 When a user resumes the chat-session before the token expiry, the token from the local storage will be validated (using validation API shown below) and then used for communication.
 
