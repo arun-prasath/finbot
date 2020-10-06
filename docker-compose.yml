@@ -49,15 +49,3 @@ services:
             - ./chatbot-rasa-nlu/data:/app/data
             - ./chatbot-rasa-nlu
         env_file: .env
-    action-server:
-        container_name: chatbot-action-server
-        restart: always
-        build: ./chatbot-rasa-action-server
-        expose:
-            - ${RASA_ACTION_SERVER_PORT}
-        ports:
-            - ${RASA_ACTION_SERVER_PORT}:${RASA_ACTION_SERVER_PORT}
-        volumes:
-            - ./chatbot-rasa-action-server/src:/srv/app/chatbot-rasa-action-server/src
-            - /chatbot-rasa-action-server/node_modules
-        env_file: .env
