@@ -24,6 +24,7 @@ docker-compose up
 
 You can then launch the app in your browser with the URL: [http://localhost:3000](http://localhost:3000)
 
+![Demo page](./demo_page.png)
 
 ## Tools used
 * Database - MongoDB
@@ -47,16 +48,20 @@ The architecture diagram is as follows:
 6. The server then sends the final data as response back to the customer.
 
 ## Security
-The client-server communication is secured by using JWT.
+The client (ReactJS) and the server (NodeJS) communication is secured by using JWT.
 
 ![Security architecture](./security_architecture.png)
 
 When a new customer starts up the conversation, a new token is generated. The generated token is then stored in local storage for further communication until it expires.
 
-When a user resumes the chat-session before the token expiry, the token from the local storage will be validated (using validation API) and then used for communication.
+When a user resumes the chat-session before the token expiry, the token from the local storage will be validated (using validation API shown below) and then used for communication.
+
+If the user's token is expired, it will be re-generated and used for communication.
+
+Upon successful validation of token, the chat history for the current user will be fetched and displayed in GUI.
 
 ### Token expiration policy
-Current token expiry is set to ***2 hours***. Once the token is expired, then a new token has to be generated again.
+Current token expiry is set to ***2 hours***. Once the token is expired, then a new token has to be generated again using the API shown below.
 
 ### Auth APIs
 
@@ -72,14 +77,63 @@ Used the online generator https://www.csfieldguide.org.nz/en/interactives/rsa-ke
 ## Metrics APIs
 The following APIs are used to obtain the metrics data
 
-#### People who engaged with the bot:
+### User Engagement
+It shows the people who have engaged with the bot.
+
 `/v1/dashboard/user_engagement`
 
-#### People who dropped off:
+Sample response:
+
+```json
+{
+  "users": [
+      "Wayne",
+      "Kent"
+  ],
+  "engagedUsersCount": 2,
+  "totalUsersCount": 5,
+  "engagementRate": "40.00%"
+}
+```
+
+### Drop offs
+It shows the people who got dropped off (closed the browser) or disconnected before the conversation is complete.
+
 `/v1/dashboard/drop_offs`
 
-#### People who completed a chat:
+Sample response:
+
+```json
+{
+  "users": [
+      "Peter Parker",
+      "Tony Stark"
+  ],
+  "droppedUsersCount": 2,
+  "totalUsersCount": 10,
+  "dropOffRate": "20.00%"
+}
+```
+
+### Completion
+It shows the people who completed a chat conversation without dropping off.
+
 `/v1/dashboard/completed_users`
+
+Sample response:
+
+```json
+{
+  "users": [
+      "Barristan Selmy",
+      "Arthur Dayne",
+      "Sandor Clegane"
+  ],
+  "completedUsersCount": 3,
+  "totalUsersCount": 18,
+  "completionRate": "16.67%"
+}
+```
 
 ## Bot conversation visualization
 The bot conversation graph is as follows.
