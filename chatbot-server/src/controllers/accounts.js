@@ -1,4 +1,5 @@
 'use strict';
+const jwtAuth = require('../helpers/jwtAuth');
 
 class AccountsController{
 

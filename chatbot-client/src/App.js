@@ -25,7 +25,6 @@ class App extends Component {
     if(jwt_auth_token){
       // check for session validity
       Passport.validateSession(jwt_auth_token).then(response =>{
-        console.log(response);
         // if not valid - then generate new token & new user. 
         if(response.data.name === 'TokenExpiredError'){
           this.generatenewToken();

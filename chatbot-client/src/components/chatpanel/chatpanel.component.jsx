@@ -1,6 +1,6 @@
 import React from 'react';
 import { GuestCard } from '../guest/guest.component';
-import { Messenger } from '../messenger/messenger.component';
+import Messenger from '../messenger/messenger.component';
 import './chatpanel.component.scss'
 
 export const ChatPanel = props => (

@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
-import socketIOClient from "socket.io-client"
 import './actions.component.scss';
 import { faKeyboard, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import config from "../../config/config.json";
-
 
 class ActionComponent extends Component { 
 
-    sendMessage = () => {
+    constructor(){
+        super();
+        this.state = {
+            input_message : ''
+        }
+    }
 
+    sendMessage = () => {
+        let input_message = this.state.input_message;
+        this.props.relayMessage(input_message);
+        this.setState({ input_message : ''} );
+    }
+
+    handleMessage = (e) => {
+        this.setState({
+            input_message : e.target.value
+        })
+    }
+
+    _handleKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            this.sendMessage();
+        }
     }
 
     render(){
@@ -21,7 +39,7 @@ class ActionComponent extends Component {
                     </div>
                 </div>
                 <div className="col-lg">
-                    <input type="text" className="form-control my-3 fin-input" placeholder="type a message..." aria-label="enter your message" aria-describedby="inputGroup-sizing-lg"/>
+                    <input type="text" onChange={this.handleMessage} onKeyDown={this._handleKeyDown} value={this.state.input_message} className="form-control my-3 fin-input" placeholder="type a message..." aria-label="enter your message" aria-describedby="inputGroup-sizing-lg"/>
                 </div>
                 <div className="col-sm-auto">
                     <div className="my-2">

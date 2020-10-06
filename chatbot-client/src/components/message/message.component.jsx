@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import socketIOClient from "socket.io-client"
 import './message.component.scss';
-import config from "../../config/config.json";
 
-class MessageComponent extends Component { 
 
-    constructor(){
-        super();
-        this.endpoint = 'http://'+config.host+':'+config.app_server_port;
-    }
+class MessageComponent extends Component {
 
-    componentDidMount(){
-        const socket = socketIOClient(this.endpoint);
-        socket.emit("message", 'Hi');
-        socket.on("reply", data => {
-            console.log(data);
-        });
+    componentDidUpdate(){
+
     }
 
     render(){
