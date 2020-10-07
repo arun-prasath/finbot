@@ -25,9 +25,13 @@ class chatbotServer{
     }
 
     initCors(){
-        app.use(cors({
+        let whitelisted_domains = {
             origin : process.env.CLIENT_HOST_URL
-        }))
+        };
+        // whitelisting the client domain.
+        app.use(cors(whitelisted_domains));
+        // enabling pre-flight cors
+        app.options('*', cors(whitelisted_domains));
     }
 
     initExpress(){
