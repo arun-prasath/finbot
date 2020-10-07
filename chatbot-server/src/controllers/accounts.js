@@ -15,7 +15,7 @@ class AccountsController {
         try {
             let auth = new jwtAuth();
             let guestDetails = auth.decode(token);
-            let audience = 'http://localhost:' + process.env.APP_SERVER_PORT;
+            let audience = process.env.CLIENT_HOST_URL;
             auth.setOptions('finchatbot', guestDetails.payload.userid, audience);
             let result = auth.verifyToken(token);
             let userid = result.userid;

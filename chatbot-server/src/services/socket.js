@@ -31,7 +31,7 @@ class SocketService {
             // verify token 
             let auth = new jwtAuth();
             let guestDetails = auth.decode(token);
-            let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
+            let audience = process.env.CLIENT_HOST_URL;
             auth.setOptions('finchatbot',guestDetails.payload.userid,audience);
             try{
                 let result = auth.verifyToken(token);

@@ -26,7 +26,7 @@ class Auth{
         let user = new UserModel(details);
         let userdetail = await user.save();
         // Generate a new token 
-        let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
+        let audience = process.env.CLIENT_HOST_URL
         let auth = new jwtAuth();
         auth.setOptions('finchatbot',userdetail.userid, audience);
         let payload = dehydrate(['userid','ip','avatarid','timezone','createdDate'],userdetail);
@@ -45,7 +45,7 @@ class Auth{
         // verify token 
         let auth = new jwtAuth();
         let guestDetails = auth.decode(token);
-        let audience = 'http://localhost:'+process.env.APP_SERVER_PORT;
+        let audience = process.env.CLIENT_HOST_URL;
         auth.setOptions('finchatbot',guestDetails.payload.userid,audience);
         try{
             let result = auth.verifyToken(token);

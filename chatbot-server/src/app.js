@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const chatbotDb = require('./services/connect');
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || process.env.APP_SERVER_PORT;
 const connectionURL = process.env.DATABASEURL;
 const dashboardRoutes = require('./routes/dashboard');
@@ -12,6 +13,7 @@ const SocketService = require('./services/socket');
 
 class chatbotServer{
     constructor() {
+        this.initCors();
         this.initExpress();
         this.initRoutes();
         this.initServer();
@@ -20,6 +22,12 @@ class chatbotServer{
 
     initDB(){
         chatbotDb.connect(connectionURL);
+    }
+
+    initCors(){
+        app.use(cors({
+            origin : process.env.CLIENT_HOST_URL
+        }))
     }
 
     initExpress(){
