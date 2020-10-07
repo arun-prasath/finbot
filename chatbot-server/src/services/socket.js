@@ -39,7 +39,7 @@ class SocketService {
                 console.log(result);
 
                 // Send Message to Rasa Server for NLU
-                let endpoint = 'http://rasa:'+process.env.RASA_PORT+'/webhooks/rest/webhook'
+                let endpoint = process.env.RASA_HOST_URL+'/webhooks/rest/webhook'
                 let response = await axios.post(endpoint, {
                     sender: token,
                     message: data.message
