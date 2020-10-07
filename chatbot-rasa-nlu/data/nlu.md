@@ -5,28 +5,17 @@
 - good morning
 - good evening
 - hey there
+- greetings
+- good day
 
 ## intent:goodbye
 - bye
 - goodbye
 - see you around
 - see you later
-
-## intent:affirm
-- yes
-- indeed
-- of course
-- that sounds good
-- correct
-- great
-
-## intent:deny
-- no
-- never
-- I don't think so
-- don't like that
-- no way
-- not really
+- close
+- exit
+- no thanks
 
 ## intent:check_balance
 - How much money is on my account?
@@ -38,4 +27,5 @@
 - What's left on my account?
 - what's my account balance?
 - what's my bank balance?
-- what's my balance
+- account balance
+- balance
