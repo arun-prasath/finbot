@@ -1,6 +1,6 @@
 # Chatbot
+- chatbot-client : https://warm-river-24892.herokuapp.com/ (Primary - GUI)
 - chatbot-server : https://desolate-wildwood-05365.herokuapp.com/
-- chatbot-client : 
 - chatbot-rasa-nlu : https://fast-escarpment-15453.herokuapp.com/
 
 ## About
