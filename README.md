@@ -54,6 +54,8 @@ The client (ReactJS) and the server (NodeJS) communication is secured by using J
 
 When a new customer starts up the conversation, a new token is generated. The generated token is then stored in local storage for further communication.
 
+![JWT Local storage](./jwt.png)
+
 When a user resumes the chat-session before the token expiry, the token from the local storage will be validated (using validation API shown below) and then used for communication.
 
 If the user's token is expired, it will be re-generated and used for communication.
@@ -134,6 +136,10 @@ Sample response:
   "completionRate": "16.67%"
 }
 ```
+
+## Sample Conversation
+
+![Sample conversation](./demo_conversation.png)
 
 ## Bot conversation visualization
 The bot conversation graph is as follows.
