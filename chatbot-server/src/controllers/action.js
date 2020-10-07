@@ -3,13 +3,15 @@
 const { response } = require('express');
 const jwtAuth = require('../helpers/jwtAuth');
 const AccountModel = require('../models/accounts');
+const chatHistory = require('../models/chatHistory');
 
-class AccountsController {
+class ActionController {
 
     constructor() {}
 
-    async getAccountBalance(req, res, next) {
+    async postAction(req, res, next) {
         const token = req.body.sender_id;
+        let requestAction = req.body.next_action;
         let responseText;
 
         try {
@@ -20,10 +22,16 @@ class AccountsController {
             let result = auth.verifyToken(token);
             let userid = result.userid;
 
-            let account = await AccountModel.findOne({userid});
-            let balance = account.balance;
-
-            responseText = 'You have $' + balance + ' in your account';
+            console.log('Requested action: ' + requestAction);
+            if (requestAction === 'action_account_balance') {
+                let account = await AccountModel.findOne({userid});
+                let balance = account.balance;
+    
+                responseText = 'You have $' + balance + ' in your account';
+            } else if (requestAction === 'action_goodbye') {
+                let history = await chatHistory.findOneAndUpdate({ userid }, { connectionStatus: 'completed' });
+                responseText = 'Bye. See you later';
+            }
         } catch (err) {
             console.log(err.message);
             responseText = 'Authentication failed. Refresh your browser';
@@ -40,4 +48,4 @@ class AccountsController {
     }
 }
 
-module.exports = new AccountsController();
+module.exports = new ActionController();

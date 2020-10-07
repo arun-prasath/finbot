@@ -8,7 +8,7 @@ const port = process.env.PORT || process.env.APP_SERVER_PORT;
 const connectionURL = process.env.DATABASEURL;
 const dashboardRoutes = require('./routes/dashboard');
 const authRoutes = require('./routes/auth');
-const accountRoutes = require('./routes/account');
+const actionRoutes = require('./routes/action');
 const SocketService = require('./services/socket');
 
 class chatbotServer{
@@ -56,7 +56,7 @@ class chatbotServer{
 
         app.use('/v1/jwt_auth',authRoutes);
         app.use('/v1/dashboard',dashboardRoutes);
-        app.use('/v1/accounts',accountRoutes);
+        app.use('/v1/action',actionRoutes);
 
     }
 
