@@ -12,6 +12,7 @@ WORKDIR ${UIAPP}
 COPY package*.json ${UIAPP}
 COPY ./src/ ${UIAPP}/src
 COPY ./public/ ${UIAPP}/public
+COPY .env ${UIAPP}
 RUN npm install
 
 ENV PATH "$PATH:$UIAPP/node_modules/.bin/"

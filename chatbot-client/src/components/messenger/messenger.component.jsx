@@ -10,7 +10,7 @@ class Messenger extends Component {
     
     constructor(){
         super();
-        this.endpoint = 'http://'+config.host+':'+config.app_server_port;
+        this.endpoint = process.env.REACT_APP_API_URL || config.host+':'+config.app_server_port;
         this.state = {
             chatHistory : []
         }
