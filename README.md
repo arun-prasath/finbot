@@ -88,12 +88,12 @@ Sample response:
 
 ```json
 {
-  "users": [
+  "engaged_users": [
       "Wayne",
       "Kent"
   ],
   "engagedUsersCount": 2,
-  "totalUsersCount": 5,
+  "total_users_visited": 5,
   "engagementRate": "40.00%"
 }
 ```
@@ -107,12 +107,12 @@ Sample response:
 
 ```json
 {
-  "users": [
+  "dropped_users": [
       "Peter Parker",
       "Tony Stark"
   ],
   "droppedUsersCount": 2,
-  "totalUsersCount": 10,
+  "total_users_visited": 10,
   "dropOffRate": "20.00%"
 }
 ```
@@ -126,13 +126,13 @@ Sample response:
 
 ```json
 {
-  "users": [
+  "completed_users": [
       "Barristan Selmy",
       "Arthur Dayne",
       "Sandor Clegane"
   ],
   "completedUsersCount": 3,
-  "totalUsersCount": 18,
+  "total_users_visited": 18,
   "completionRate": "16.67%"
 }
 ```

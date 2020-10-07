@@ -19,12 +19,12 @@ class Dashboard{
 
         let totalUserCount = await users.countDocuments();
         responseObj.engagedUsersCount = engagedUsers.length;
-        responseObj.total_user_visited = totalUserCount;
+        responseObj.total_users_visited = totalUserCount;
         responseObj.engagementRate = (( engagedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
 
         res.status(200).json(responseObj);
     }
-    
+
     /**
      * The users who left the chat conversation in-between.
      */
@@ -38,7 +38,7 @@ class Dashboard{
 
         let totalUserCount = await users.countDocuments();
         responseObj.droppedUsersCount = droppedUsers.length;
-        responseObj.total_user_visited = totalUserCount;
+        responseObj.total_users_visited = totalUserCount;
         responseObj.dropOffRate = (( droppedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
 
         res.status(200).json(responseObj);
@@ -50,14 +50,14 @@ class Dashboard{
     async getCompletedUsers(req, res) {
         let completedUsers = await chatHistory.find({ connectionStatus: 'completed' }).select('userid');
         let responseObj = {
-            completed_  users: []
+            completed_users: []
         };
 
         completedUsers.forEach(user => responseObj.users.push(user.userid))
 
         let totalUserCount = await users.countDocuments();
         responseObj.completedUsersCount = completedUsers.length;
-        responseObj.total_user_visited = totalUserCount;
+        responseObj.total_users_visited = totalUserCount;
         responseObj.completionRate = (( completedUsers.length * 100 ) / totalUserCount).toFixed(2) + '%';
 
         res.status(200).json(responseObj);
