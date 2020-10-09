@@ -12,6 +12,7 @@ class ActionController {
     async postAction(req, res, next) {
         const token = req.body.sender_id;
         let requestAction = req.body.next_action;
+        console.log('Requested action: ' + requestAction);
         let responseText;
 
         try {
@@ -22,7 +23,6 @@ class ActionController {
             let result = auth.verifyToken(token);
             let userid = result.userid;
 
-            console.log('Requested action: ' + requestAction);
             if (requestAction === 'action_account_balance') {
                 let account = await AccountModel.findOne({userid});
                 let balance = account.balance;

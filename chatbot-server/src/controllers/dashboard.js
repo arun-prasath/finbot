@@ -15,7 +15,7 @@ class Dashboard{
             engaged_users: []
         };
 
-        engagedUsers.forEach(user => responseObj.users.push(user.userid))
+        engagedUsers.forEach(user => responseObj.engaged_users.push(user.userid))
 
         let totalUserCount = await users.countDocuments();
         responseObj.engagedUsersCount = engagedUsers.length;
@@ -34,7 +34,7 @@ class Dashboard{
             dropped_users: []
         };
 
-        droppedUsers.forEach(user => responseObj.users.push(user.userid))
+        droppedUsers.forEach(user => responseObj.dropped_users.push(user.userid))
 
         let totalUserCount = await users.countDocuments();
         responseObj.droppedUsersCount = droppedUsers.length;
@@ -53,7 +53,7 @@ class Dashboard{
             completed_users: []
         };
 
-        completedUsers.forEach(user => responseObj.users.push(user.userid))
+        completedUsers.forEach(user => responseObj.completed_users.push(user.userid))
 
         let totalUserCount = await users.countDocuments();
         responseObj.completedUsersCount = completedUsers.length;

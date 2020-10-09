@@ -1,6 +1,8 @@
 const socket = require('socket.io');
 const jwtAuth = require('../helpers/jwtAuth');
 const axios = require('axios');
+const chatHistory = require('../models/chatHistory');
+const chatMessage = require('../models/chatMessage');
 
 class SocketService {
 
@@ -19,8 +21,11 @@ class SocketService {
     }
 
     disconnect = (socket) => {
-        socket.on("disconnect", () => {
+        socket.on("disconnect", async (data) => {
             console.log('User disconnected');
+            if (socket.userid) {
+                await chatHistory.findOneAndUpdate({ userid: socket.userid, connectionStatus: 'engaged' }, { connectionStatus: 'dropped' });
+            }
         });
     }
 
@@ -35,8 +40,21 @@ class SocketService {
             auth.setOptions('finchatbot',guestDetails.payload.userid,audience);
             try{
                 let result = auth.verifyToken(token);
-                // Store Message to User Chat Session
                 console.log(result);
+
+                socket.userid = result.userid;
+
+                // Store Message to User Chat Session
+                let userChat = new chatMessage({
+                    userid: result.userid,
+                    jwt_token: token,
+                    context: 'user',
+                    message: data.message
+                });
+                let userChatHistory = await chatHistory.findOneAndUpdate({ userid: result.userid }, {$push: {chatMessages: userChat}}, { new: true, upsert: true });
+                userChatHistory.connectionStatus = 'engaged';
+                await userChatHistory.save();
+                await userChat.save();
 
                 // Send Message to Rasa Server for NLU
                 let endpoint = process.env.RASA_HOST_URL+'/webhooks/rest/webhook'
@@ -44,9 +62,17 @@ class SocketService {
                     sender: token,
                     message: data.message
                 }).then(res => {
-                    res.data.forEach(data => {
+                    res.data.forEach(async (data) => {
                         socket.emit('reply', data.text);
-                    })
+                        var botChat = new chatMessage({
+                            userid: result.userid,
+                            jwt_token: token,
+                            context: 'bot',
+                            message: data.text
+                        });
+                        await chatHistory.findOneAndUpdate({ userid: result.userid }, {$push: {chatMessages: botChat}});
+                        botChat.save();
+                    });
                 }).catch(err => {
                     console.log(err);
                     socket.emit('reply', 'Oops!! An unexpected error occurred!!');
