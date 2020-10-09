@@ -49,11 +49,11 @@ class chatbotServer{
         app.get('/', function (req, res) {
             
             let available_routes = { 
-                'new session' : { 'uri' : '/v1/jwt_auth/new_session', 'protected' : false },
-                'validate session' : { 'uri' : '/v1/jwt_auth/verify_session', 'protected' : false },
-                'user engagement' : { 'uri' : '/v1/dashboard/user_engagement', 'protected' : true },
-                'drop offs' : { 'uri' : '/v1/dashboard/drop_offs','protected' : true },
-                'completed users' : { 'uri' : '/v1/dashboard/completed_users', 'protected' : true }
+                'new session' : { 'uri' : '/v1/jwt_auth/new_session'},
+                'validate session' : { 'uri' : '/v1/jwt_auth/verify_session'},
+                'user engagement' : { 'uri' : '/v1/dashboard/user_engagement'},
+                'drop offs' : { 'uri' : '/v1/dashboard/drop_offs'},
+                'completed users' : { 'uri' : '/v1/dashboard/completed_users'}
             }
             res.status(201).json(available_routes);
         });

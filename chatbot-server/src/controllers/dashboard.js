@@ -10,7 +10,7 @@ class Dashboard{
      * The users who engaged with the bot.
      */
     async getUserEngagement(req, res) {
-        let engagedUsers = await chatHistory.find({ connectionStatus: 'engaged' }).select('userid');
+        let engagedUsers = await chatHistory.find().select('userid');
         let responseObj = {
             engaged_users: []
         };

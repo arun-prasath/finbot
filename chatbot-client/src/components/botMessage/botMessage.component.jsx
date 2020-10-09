@@ -5,7 +5,6 @@ class BotMessage extends Component {
     constructor(props) {
         super(props);
         this.botMessage = React.createRef();
-
     }
 
     componentDidMount () {
