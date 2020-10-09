@@ -36,7 +36,7 @@ class ActionComponent extends Component {
     render(){
         return(
             <div className="row">
-                <div className="col-sm-auto">
+                <div className="col-sm-auto fin-keyboard">
                     <div className="fin-input-icon my-2">
                         <FontAwesomeIcon icon={faKeyboard} size="3x" pull="right" className="mt-1 fin-keyboard" ></FontAwesomeIcon>
                     </div>

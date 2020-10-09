@@ -66,10 +66,12 @@ class Messenger extends Component {
         return (
             <div className="messenger-container">
                 <div className="chat-container">
-                    <MessageComponent chatMessages={chatHistory}></MessageComponent>
-                    <div className="chat-messenger">
-                        <ActionComponent relayMessage={this.relay}></ActionComponent>
+                    <div className="chat-area">
+                        <MessageComponent chatMessages={chatHistory}></MessageComponent>
                     </div>
+                </div>
+                <div className="chat-messenger">
+                        <ActionComponent relayMessage={this.relay}></ActionComponent>
                 </div>
             </div>
         )

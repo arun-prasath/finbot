@@ -21,3 +21,19 @@ $bg-pink : #e01a5d;
     sans-serif;
     text-transform: uppercase;
 }
+
+.fin-keyboard{
+    @media (min-width: 576px) {
+        display: none;
+    }
+    @media (min-width: 768px) {
+        display : block;
+    }
+    @media (min-width: 992px) {
+        display : block;
+    }
+    @media (min-width: 1200px) {
+        display: block;
+    }
+
+}

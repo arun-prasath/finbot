@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './message.component.scss';
 import { MyMessage } from '../myMessage/myMessage.component';
-import { BotMessage } from '../botMessage/botMessage.component';
+import BotMessage from '../botMessage/botMessage.component';
 
 
 
